@@ -6,3 +6,6 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(Display_img src/display_img.cpp)
 target_link_libraries(Display_img ${OpenCV_LIBS})
+
+add_executable(Display_movie src/display_movie.cpp)
+target_link_libraries(Display_movie ${OpenCV_LIBS})
