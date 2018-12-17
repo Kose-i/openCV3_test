@@ -22,4 +22,5 @@ int main(int argc, char** argv)
   cv::imshow(img_name, img_data);
 
   cv::waitKey(0);
+  cv::destroyWindow(img_name);
 }
