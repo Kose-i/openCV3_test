@@ -12,3 +12,6 @@ target_link_libraries(Display_movie ${OpenCV_LIBS})
 
 add_executable(Display_movie_re src/display_movie_re.cpp)
 target_link_libraries(Display_movie_re ${OpenCV_LIBS})
+
+add_executable(Gaussian_blur src/gaussianblur.cpp)
+target_link_libraries(Gaussian_blur ${OpenCV_LIBS})
