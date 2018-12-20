@@ -5,7 +5,7 @@
 #include <string>
 
 int g_slider_position {};
-int g_run {1};
+int g_run {1};//コマ送りの動き方
 int g_dontset {};
 cv::VideoCapture g_cap;
 
@@ -15,8 +15,8 @@ void onTrackbarSlide(int pos, void*)
 
   if (! g_dontset) {
     g_run = 1;
-    g_dontset = 0;
   }
+  g_dontset = 0;
 }
 
 int main(int argc, char** argv)
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 
   cv::Mat frame;
   for (;;) {
-    if (g_run != 0) {
+    if (g_run == 0) {
       g_cap >> frame;
       if (frame.empty()) {
         break;
@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     } else if (c == 'r') {
       g_run = -1;
       std::cout << "Run mode ,run = " << g_run << '\n';
-    } else if (c == 29) { //ESC キー
+    } else if (c == 'q') {
       break;
     }
   }
