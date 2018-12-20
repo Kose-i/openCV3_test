@@ -15,3 +15,9 @@ target_link_libraries(Display_movie_re ${OpenCV_LIBS})
 
 add_executable(Gaussian_blur src/gaussianblur.cpp)
 target_link_libraries(Gaussian_blur ${OpenCV_LIBS})
+
+add_executable(PyrDown src/pyrDown.cpp)
+target_link_libraries(PyrDown ${OpenCV_LIBS})
+
+add_executable(Canny src/canny.cpp)
+target_link_libraries(Canny ${OpenCV_LIBS})
