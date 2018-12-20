@@ -21,3 +21,6 @@ target_link_libraries(PyrDown ${OpenCV_LIBS})
 
 add_executable(Canny src/canny.cpp)
 target_link_libraries(Canny ${OpenCV_LIBS})
+
+add_executable(VideoWriter src/videowriter.cpp)
+target_link_libraries(VideoWriter ${OpenCV_LIBS})
