@@ -1,6 +1,7 @@
 #include <opencv2/opencv.hpp>
 
 #include <vector>
+#include <string>
 
 void problem6_1() {
   cv::Mat matrix = cv::Mat::zeros(100, 100, CV_8UC3);
@@ -94,6 +95,9 @@ void problem6_3() {
 
   while (true) {
     cap>>frame;
+    unsigned temp = cap.get(cv::CAP_PROP_FPS);
+    std::string str_fps = std::to_string(temp);
+    cv::putText(frame, str_fps, cv::Point(100,100), cv::FONT_HERSHEY_SIMPLEX, 4, cv::Scalar(255, 0, 0));
     cv::imshow("camera", frame);
     int key = cv::waitKey(1);
     if (key == 'q') {
@@ -103,7 +107,28 @@ void problem6_3() {
   cv::destroyAllWindows();
 }
 
+void DrawFace(cv::Mat& image, const cv::Point& center, const int& radius) {
+  cv::Scalar color(255, 255, 0);
+  cv::circle(image, center, radius, color);
+}
+
 void problem6_4() {
+  cv::VideoCapture cap(0);
+
+  if (!cap.isOpened()) {
+    std::cerr << "!cap.isOpened\n";
+  }
+
+  cv::Mat frame;
+  cap>>frame;
+
+  DrawFace(frame, cv::Point(100, 100), 80);
+  cv::imshow("camera", frame);
+  while (true) {
+    if (cv::waitKey(0) == 'q') {
+      break;
+    }
+  }
 }
 
 void problem6_5() {
@@ -112,7 +137,7 @@ void problem6_5() {
 int main(int argc, char** argv) {
   //problem6_1();
   //problem6_2();
-  problem6_3();
-  //problem6_4();
+  //problem6_3();
+  problem6_4();
   //problem6_5();
 }
