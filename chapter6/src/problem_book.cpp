@@ -132,12 +132,30 @@ void problem6_4() {
 }
 
 void problem6_5() {
+  cv::Mat matrix = cv::Mat::zeros(300, 300, CV_8UC1);
+
+  cv::Point start_point(0,0);
+  cv::Point   end_point(0, 300);
+
+  cv::LineIterator counter(matrix, start_point, end_point);
+  auto count_t = counter.count;
+
+  std::cout << count_t << '\n';
+
+//TODO What is (4 consolidated and 8 consolidated)
+
+  cv::imshow("problem6_5", matrix);
+  while (true) {
+    if (cv::waitKey(0) == 'q') {
+      break;
+    }
+  }
 }
 
 int main(int argc, char** argv) {
   //problem6_1();
   //problem6_2();
   //problem6_3();
-  problem6_4();
-  //problem6_5();
+  //problem6_4();
+  problem6_5();
 }
