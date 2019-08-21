@@ -58,15 +58,39 @@ void problem7_2() {
 }
 
 void problem7_3() {
+
   cv::Mat matrix(3, 100, CV_8UC1);
+  cv::RNG rng_eng(cv::theRNG());
+  cv::Mat roi1(matrix, cv::Rect(0,0,100,1));
+  rng_eng.fill(roi1, cv::RNG::NORMAL, 64, 10);
+
+  cv::Mat roi2(matrix, cv::Rect(0,1,100,1));
+  rng_eng.fill(roi1, cv::RNG::NORMAL, 128, 2);
+
+  cv::Mat roi3(matrix, cv::Rect(0,2,100,1));
+  rng_eng.fill(roi1, cv::RNG::NORMAL, 192, 10);
+
+  //TODO cv::PCA
+  
+  //std::vector<std::vector<int>> mean_matrix{{64,}, {128,}, {192,}};
+
+  //cv::PCA tmp(matrix,mean_matrix, cv::PCA::DATA_AS_COL, 3);
+
+  //cv::Mat projection_matrix = tmp.project(matrix);
 }
 
 void problem7_4() {
+  std::vector<std::vector<double>> matrix_A{{1,1},{0,1},{-1,1}};
+  cv::SVD tmp;
+  std::vector<std::vector<double>> matrix_W;
+  std::vector<std::vector<double>> matrix_U;
+  std::vector<std::vector<double>> matrix_Vt;
+  //tmp.compute(matrix_A, matrix_W, matrix_U, matrix_Vt);
 }
 
 int main(int argc, char** argv) {
   //problem7_1();
-  problem7_2();
-  //problem7_3();
+  //problem7_2();
+  problem7_3();
   //problem7_4();
 }
