@@ -41,8 +41,8 @@ void problem8_1() {
   }
 }
 
-int x_point, y_point;
-void on_mouse_call_back(int event, int x, int y, int flags) {
+int x_point{}, y_point{};
+void on_mouse_call_back(int event, int x, int y, int flags, void* userparam) {
   if (flags == cv::EVENT_LBUTTONDOWN) {
     x_point = x;
     y_point = y;
@@ -52,10 +52,14 @@ void on_mouse_call_back(int event, int x, int y, int flags) {
 void problem8_2() {
   cv::Mat matrix = cv::imread("../../lenna.png");
   std::string str_pix_color;
-  cv::namedWindow("matrix", matrix);
+  cv::namedWindow("matrix");
   cv::setMouseCallback("matrix", on_mouse_call_back);
   while (true) {
-    cv::putText(str_pix_color);
+    cv::imshow("matrix", matrix);
+    cv::Vec3b mouse_color = matrix.at<cv::Vec3b>(x_point, y_point);
+    //std::cout << mouse_color << '\n';
+
+    //cv::putText(str_pix_color);
     char key = cv::waitKey(1);
     if (key == 'q') {
       break;
@@ -63,9 +67,18 @@ void problem8_2() {
   }
 }
 
+void on_prob83_3(int event, int x, int y, int flags, void* userparam) {
+}
+
+void problem8_3() {
+  cv::Mat matrix = cv::imread("../../lenna.png");
+  cv::namedWindow("prime_matrix", matrix);
+  cv::setMouseCallback("matrix", on_prob8_3);
+}
+
 int main(int argc, char** argv) {
   //problem8_1();
-  problem8_2();
-  //problem8_3();
+  //problem8_2();
+  problem8_3();
   //problem8_4();
 }
