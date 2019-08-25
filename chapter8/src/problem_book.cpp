@@ -67,13 +67,32 @@ void problem8_2() {
   }
 }
 
-void on_prob83_3(int event, int x, int y, int flags, void* userparam) {
+cv::Point start_point8_3;
+cv::Point end_point8_3;
+void on_prob8_3(int event, int x, int y, int flags, void* userparam) {
+  if (flags == cv::EVENT_LBUTTONDOWN) {
+    start_point8_3.x = x;
+    start_point8_3.y = y;
+  } else if (flags == cv::EVENT_LBUTTONUP) {
+    end_point8_3.x = x;
+    end_point8_3.y = y;
+  }
 }
 
 void problem8_3() {
   cv::Mat matrix = cv::imread("../../lenna.png");
-  cv::namedWindow("prime_matrix", matrix);
-  cv::setMouseCallback("matrix", on_prob8_3);
+  cv::namedWindow("prime_matrix");
+  cv::setMouseCallback("prime_matrix", on_prob8_3);
+  while (true) {
+    cv::Mat draw_matrix = matrix.clone();
+    cv::rectangle(draw_matrix, start_point8_3, end_point8_3, cv::Scalar(0,0,200), 3, 4);
+    cv::imshow("prime_matrix", draw_matrix);
+    char key = cv::waitKey(1);
+    if (key == 'q') {
+      break;
+    }
+    /*HistGraph*/
+  }
 }
 
 int main(int argc, char** argv) {
